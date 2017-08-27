@@ -2,26 +2,21 @@
   <div>
     <div class="app-head">
       <div class="app-head-inner">
-        <router-link :to="{path: '/'}">
-          <img src="../assets/logo.png">
-        </router-link>
+        <img src="../assets/logo.png" alt="">
         <div class="head-nav">
           <ul class="nav-list">
-            <li> {{ username }}</li>
-            <li v-if="username!== ''" class="nav-pile">|</li>
-            <li v-if="username!== ''" @click="quit">退出</li>
-            <li v-if="username=== ''" @click="logClick">登录</li>
+            <li>登录</li>
             <li class="nav-pile">|</li>
-            <li v-if="username=== ''" @click="regClick">注册</li>
-            <li v-if="username=== ''" class="nav-pile">|</li>
-            <li @click="aboutClick">关于</li>
+            <li>注册</li>
+            <li class="nav-pile">|</li>
+            <li>关于</li>
           </ul>
-        </div>  
+        </div>
       </div>
     </div>
     <div class="app-content">
       <keep-alive>
-        <router-view></router-view>
+       <router-view></router-view>
       </keep-alive>
     </div>
     <div class="app-foot">
