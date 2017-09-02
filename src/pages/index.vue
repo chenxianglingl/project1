@@ -17,7 +17,7 @@
       <div class="index-left-block lastest-news">
         <h2>最新消息</h2>
         <ul>
-          <li v-for="item in newsList">
+          <li v-for="item in newsList" class="new-item">
             <a :href="item.url">{{ item.title }}</a>
           </li>
         </ul>
@@ -42,10 +42,10 @@
 <script>
 export default {
   created: function () {
-    this.$http.post('api/getList', {userId: 123})
-    .then(function (data) {
-      console.log(data)
-    }, function (err) {
+    this.$http.get('api/getNewsList')
+    .then((res) => {
+      this.newsList = res.data
+    }, (err) => {
       console.log(err)
     })
   },
