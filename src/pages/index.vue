@@ -17,13 +17,14 @@
       <div class="index-left-block lastest-news">
         <h2>最新消息</h2>
         <ul>
-          <li v-for="item in newsList">
+          <li v-for="item in newsList" class="new-item">
             <a :href="item.url">{{ item.title }}</a>
           </li>
         </ul>
       </div>
     </div>
     <div class="index-right">
+      <slide-show :slides="slides" :inv="invTime" @onchange="doSomethingOnSlideChange"></slide-show>
       <div class="index-board-list">
         <div v-for="(item,index) in boardList" class="index-board-item" :class="[{'line-last' : index%2 !== 0 },'index-board-' + item.id ]">
           <div class="index-board-item-inner">
@@ -40,7 +41,11 @@
 </template>
 
 <script>
+import slideShow from '../components/slideShow'
 export default {
+  components:{
+    slideShow
+  },
   created: function () {
     this.$http.post('api/getNewsList', {userId: 123})
     .then(function (data) {
@@ -51,6 +56,29 @@ export default {
   },
   data () {
     return {
+      invTime: 2000,
+      slides: [
+        {
+          src: require('../assets/slideShow/pic1.jpg'),
+          title: 'xxx1',
+          href: 'detail/analysis'
+        },
+        {
+          src: require('../assets/slideShow/pic2.jpg'),
+          title: 'xxx2',
+          href: 'detail/count'
+        },
+        {
+          src: require('../assets/slideShow/pic3.jpg'),
+          title: 'xxx3',
+          href: 'detail/publish'
+        },
+        {
+          src: require('../assets/slideShow/pic4.jpg'),
+          title: 'xxx4',
+          href: 'detail/forecast'
+        }
+      ],
       boardList: [
         {
           title: '开放产品',
@@ -129,6 +157,11 @@ export default {
           ]
         }
       }
+    }
+  },
+  methods: {
+    doSomethingOnSlideChange () {
+      console.log('doSomethingOnSlideChange run!')
     }
   }
 }
