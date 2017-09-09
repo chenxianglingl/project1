@@ -123,16 +123,31 @@ export default {
 	},
 	methods: {
 		productChange (obj) {
-			this.productId = obj.value;
-			this.getTableData();
+			this.$store.commit('updateParams',{
+				key: 'productId',
+				val: obj.value
+			});
+			this.$store.dispatch('fetchOrderList')
+			//this.productId = obj.value;
+			//this.getTableData();
 		},
 		changeStartDate (date) {
-			this.startDate = date;
-			this.getTableData();
+			this.$store.commit('updateParams',{
+				key: 'startDate',
+				val: date
+			});
+			this.$store.dispatch('fetchOrderList')
+			//this.startDate = date;
+			//this.getTableData();
 		},
 		changeEndDate (date) {
-			this.endDate = date;
-			this.getTableData();
+			this.$store.commit('updateParams',{
+				key: 'endDate',
+				val: date
+			});
+			this.$store.dispatch('fetchOrderList')
+			//this.endDate = date;
+			//this.getTableData();
 		},
 		getTableData () {
 			let reqParam = {
