@@ -63,8 +63,8 @@ app.use(hotMiddleware)
 
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
-/*app.use(staticPath, express.static('./static'))
-const jsonServer = require('json-server')
+app.use(staticPath, express.static('./static'))
+/*const jsonServer = require('json-server')
 const apiServer = jsonServer.create()
 const apiRouter = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
